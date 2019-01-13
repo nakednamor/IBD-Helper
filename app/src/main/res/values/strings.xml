@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">IBD Helper</string>
+    <string name="buttonBowelAdd">Add</string>
+    <string name="buttonBowelSearch">Search</string>
 </resources>
