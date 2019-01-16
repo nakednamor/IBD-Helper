@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "26aae0526b9677cd0a189550c7b1a842",
+    "identityHash": "2e3d837181cd108a47be59bc16babbcb",
     "entities": [
       {
         "tableName": "bowelmovement",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` INTEGER NOT NULL, `bristolscale` INTEGER NOT NULL, `blood` INTEGER, `mucus` INTEGER, FOREIGN KEY(`bristolscale`) REFERENCES `bristolscale`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` INTEGER NOT NULL, `bristolscale` INTEGER NOT NULL, `blood` INTEGER, `mucus` INTEGER, `stoolcolor` INTEGER, FOREIGN KEY(`bristolscale`) REFERENCES `bristolscale`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`stoolcolor`) REFERENCES `stoolcolor`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -37,6 +37,12 @@
             "columnName": "mucus",
             "affinity": "INTEGER",
             "notNull": false
+          },
+          {
+            "fieldPath": "stoolColor",
+            "columnName": "stoolcolor",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -61,6 +67,14 @@
               "bristolscale"
             ],
             "createSql": "CREATE  INDEX `index_bowelmovement_bristolscale` ON `${TABLE_NAME}` (`bristolscale`)"
+          },
+          {
+            "name": "index_bowelmovement_stoolcolor",
+            "unique": false,
+            "columnNames": [
+              "stoolcolor"
+            ],
+            "createSql": "CREATE  INDEX `index_bowelmovement_stoolcolor` ON `${TABLE_NAME}` (`stoolcolor`)"
           }
         ],
         "foreignKeys": [
@@ -70,6 +84,17 @@
             "onUpdate": "NO ACTION",
             "columns": [
               "bristolscale"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "stoolcolor",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "stoolcolor"
             ],
             "referencedColumns": [
               "id"
@@ -117,11 +142,52 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "stoolcolor",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `image` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_stoolcolor_name",
+            "unique": true,
+            "columnNames": [
+              "name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_stoolcolor_name` ON `${TABLE_NAME}` (`name`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"26aae0526b9677cd0a189550c7b1a842\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2e3d837181cd108a47be59bc16babbcb\")"
     ]
   }
 }

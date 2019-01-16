@@ -9,5 +9,5 @@ import net.zillinger.roman.ibdhelper.db.entity.BowelMovement;
 public interface BowelMovementDao {
 
     @Insert
-    public long add(BowelMovement bowelMovement);
+    long add(BowelMovement bowelMovement);
 }

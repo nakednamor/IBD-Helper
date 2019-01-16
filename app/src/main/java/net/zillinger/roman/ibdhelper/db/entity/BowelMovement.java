@@ -9,10 +9,12 @@ import android.support.annotation.NonNull;
 
 import java.util.Date;
 
-@Entity(tableName = "bowelmovement", indices = {@Index(value = "time", unique = true), @Index("bristolscale")},
-        foreignKeys = @ForeignKey(entity = BristolEntry.class,
-                parentColumns = "id",
-                childColumns = "bristolscale"))
+@Entity(tableName = "bowelmovement", indices = {@Index(value = "time", unique = true), @Index("bristolscale"), @Index("stoolcolor")},
+        foreignKeys = {
+                @ForeignKey(entity = BristolEntry.class, parentColumns = "id", childColumns = "bristolscale"),
+                @ForeignKey(entity = StoolColor.class, parentColumns = "id", childColumns = "stoolcolor")
+        }
+)
 public class BowelMovement {
 
     @PrimaryKey(autoGenerate = true)
@@ -31,6 +33,9 @@ public class BowelMovement {
 
     @ColumnInfo(name = "mucus")
     private Boolean mucus = false;
+
+    @ColumnInfo(name = "stoolcolor")
+    private Integer stoolColor;
 
     public int getId() {
         return id;
@@ -68,7 +73,17 @@ public class BowelMovement {
         return mucus;
     }
 
+    public Integer getStoolColor() {
+        return stoolColor;
+    }
+
+    public void setStoolColor(Integer stoolColor) {
+        this.stoolColor = stoolColor;
+    }
+
     public void setMucus(Boolean mucus) {
         this.mucus = mucus;
+
+
     }
 }

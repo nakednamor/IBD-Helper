@@ -10,13 +10,15 @@ import android.support.annotation.NonNull;
 
 import net.zillinger.roman.ibdhelper.db.dao.BowelMovementDao;
 import net.zillinger.roman.ibdhelper.db.dao.BristolScaleDao;
+import net.zillinger.roman.ibdhelper.db.dao.StoolColorDao;
 import net.zillinger.roman.ibdhelper.db.entity.BowelMovement;
 import net.zillinger.roman.ibdhelper.db.entity.BristolEntry;
 import net.zillinger.roman.ibdhelper.db.entity.Converters;
+import net.zillinger.roman.ibdhelper.db.entity.StoolColor;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {BowelMovement.class, BristolEntry.class}, version = 1)
+@Database(entities = {BowelMovement.class, BristolEntry.class, StoolColor.class}, version = 1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -25,6 +27,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract BowelMovementDao bowelMovementDao();
 
     public abstract BristolScaleDao bristolScaleDao();
+
+    public abstract StoolColorDao stoolColorDao();
 
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
