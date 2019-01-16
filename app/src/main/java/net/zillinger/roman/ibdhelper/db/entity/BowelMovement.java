@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import java.util.Date;
 
@@ -17,17 +18,19 @@ public class BowelMovement {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @NonNull
     @ColumnInfo(name = "time")
     private Date time;
 
+    @NonNull
     @ColumnInfo(name = "bristolscale")
     private int bristol;
 
     @ColumnInfo(name = "blood")
-    private boolean blood;
+    private Boolean blood = false;
 
     @ColumnInfo(name = "mucus")
-    private boolean mucus;
+    private Boolean mucus = false;
 
     public int getId() {
         return id;
@@ -53,19 +56,19 @@ public class BowelMovement {
         this.bristol = bristol;
     }
 
-    public boolean isBlood() {
+    public Boolean getBlood() {
         return blood;
     }
 
-    public void setBlood(boolean blood) {
+    public void setBlood(Boolean blood) {
         this.blood = blood;
     }
 
-    public boolean isMucus() {
+    public Boolean getMucus() {
         return mucus;
     }
 
-    public void setMucus(boolean mucus) {
+    public void setMucus(Boolean mucus) {
         this.mucus = mucus;
     }
 }
