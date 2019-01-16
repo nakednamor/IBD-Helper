@@ -24,22 +24,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/buttonBowelAdd"
-                tools:id="buttonBowelAdd"
+                tools:id="@id/buttonBowelAdd"
                 tools:layout_height="match_parent" />
 
-            <Button
-                android:id="@+id/buttonBowelSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/buttonBowelSearch" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonDoctorNew"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            tools:text="@string/buttonDoctorNew" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
