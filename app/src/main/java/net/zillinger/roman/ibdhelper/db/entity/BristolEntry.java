@@ -2,12 +2,13 @@ package net.zillinger.roman.ibdhelper.db.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Entity(tableName = "bristolscale")
+@Entity(tableName = "bristolscale", indices = {@Index(value = "type", unique = true)})
 public class BristolEntry {
 
     @PrimaryKey(autoGenerate = true)

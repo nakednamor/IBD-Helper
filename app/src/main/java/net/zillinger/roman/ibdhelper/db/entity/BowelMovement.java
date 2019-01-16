@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "bowelmovement", indices = {@Index("time"), @Index("bristolscale")},
+@Entity(tableName = "bowelmovement", indices = {@Index(value = "time", unique = true), @Index("bristolscale")},
         foreignKeys = @ForeignKey(entity = BristolEntry.class,
                 parentColumns = "id",
                 childColumns = "bristolscale"))
