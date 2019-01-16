@@ -23,6 +23,12 @@ public class BowelMovement {
     @ColumnInfo(name = "bristolscale")
     private int bristol;
 
+    @ColumnInfo(name = "blood")
+    private boolean blood;
+
+    @ColumnInfo(name = "mucus")
+    private boolean mucus;
+
     public int getId() {
         return id;
     }
@@ -45,5 +51,21 @@ public class BowelMovement {
 
     public void setBristol(int bristol) {
         this.bristol = bristol;
+    }
+
+    public boolean isBlood() {
+        return blood;
+    }
+
+    public void setBlood(boolean blood) {
+        this.blood = blood;
+    }
+
+    public boolean isMucus() {
+        return mucus;
+    }
+
+    public void setMucus(boolean mucus) {
+        this.mucus = mucus;
     }
 }

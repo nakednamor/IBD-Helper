@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "351c457de9a39ee437619ff612f49a09",
+    "identityHash": "fcb3cc60c78bfbaecbe4e877a771d716",
     "entities": [
       {
         "tableName": "bowelmovement",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` INTEGER, `bristolscale` INTEGER NOT NULL, FOREIGN KEY(`bristolscale`) REFERENCES `bristolscale`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` INTEGER, `bristolscale` INTEGER NOT NULL, `blood` INTEGER NOT NULL, `mucus` INTEGER NOT NULL, FOREIGN KEY(`bristolscale`) REFERENCES `bristolscale`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -25,6 +25,18 @@
             "columnName": "bristolscale",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "blood",
+            "columnName": "blood",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mucus",
+            "columnName": "mucus",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -36,11 +48,11 @@
         "indices": [
           {
             "name": "index_bowelmovement_time",
-            "unique": false,
+            "unique": true,
             "columnNames": [
               "time"
             ],
-            "createSql": "CREATE  INDEX `index_bowelmovement_time` ON `${TABLE_NAME}` (`time`)"
+            "createSql": "CREATE UNIQUE INDEX `index_bowelmovement_time` ON `${TABLE_NAME}` (`time`)"
           },
           {
             "name": "index_bowelmovement_bristolscale",
@@ -94,13 +106,22 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_bristolscale_type",
+            "unique": true,
+            "columnNames": [
+              "type"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_bristolscale_type` ON `${TABLE_NAME}` (`type`)"
+          }
+        ],
         "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"351c457de9a39ee437619ff612f49a09\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"fcb3cc60c78bfbaecbe4e877a771d716\")"
     ]
   }
 }
